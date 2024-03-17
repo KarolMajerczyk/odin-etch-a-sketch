@@ -16,13 +16,24 @@ body {
   height: 100vh;
 
   display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  overflow: hidden;
+  padding: 20px;
+}
+
+#canvas {
+  flex: 1;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .grid {
-  display: inline-block;
-  border: 1px solid black;
+  background: #fff;
+  border: 1px solid #9c9c9c;
 }
 
 .grid-row {
@@ -30,6 +41,14 @@ body {
 }
 
 .grid-column {
-  border: 1px solid black;
+  border: 1px solid #ddd;
   cursor: pointer;
+}
+
+.settings-panel {
+  display: flex;
+  gap: 30px;
+
+  justify-content: center;
+  padding: 30px;
 }

@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="settings-panel">
+      <input
+        id="rows-count"
+        class="range-input"
+        type="range"
+        value="16"
+        min="1"
+        max="50"
+      />
+      <input
+        id="columns-count"
+        class="range-input"
+        type="range"
+        value="16"
+        min="1"
+        max="50"
+      />
+      <input
+        id="pixel-size"
+        class="range-input"
+        type="range"
+        value="25"
+        min="10"
+        max="50"
+      />
+      <input id="color-input" type="color" />
+    </div>
     <div id="canvas"></div>
     <script src="script.js"></script>
   </body>
