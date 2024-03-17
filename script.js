@@ -1,14 +1,14 @@
 const canvas = document.querySelector("#canvas");
 const settingsPanel = document.querySelector(".settings-panel");
 
+const rowsCountInput = document.querySelector("#rows-count");
+const columnsCountInput = document.querySelector("#columns-count");
+const pixelSizeInput = document.querySelector("#pixel-size");
+
 settingsPanel.addEventListener("input", (e) => {
   if (e.target.id === "color-input" || e.target.id === "random-color") {
     return;
   }
-
-  const rowsCountInput = document.querySelector("#rows-count");
-  const columnsCountInput = document.querySelector("#columns-count");
-  const pixelSizeInput = document.querySelector("#pixel-size");
 
   rowsCountInput.max = Math.floor(canvas.clientHeight / pixelSizeInput.value);
   columnsCountInput.max = Math.floor(canvas.clientWidth / pixelSizeInput.value);
@@ -20,7 +20,7 @@ settingsPanel.addEventListener("input", (e) => {
   );
 });
 
-function renderGridCanvas(rowsCount = 16, columnsCount = 16, pixelSize = 20) {
+function renderGridCanvas(rowsCount, columnsCount, pixelSize) {
   canvas.innerHTML = "";
   console.log(canvas);
 
@@ -74,4 +74,8 @@ function getRandomNumber(minNumber, maxNumber) {
   return Math.floor(Math.random() * maxNumber) + minNumber;
 }
 
-renderGridCanvas();
+renderGridCanvas(
+  rowsCountInput.value,
+  columnsCountInput.value,
+  pixelSizeInput.value
+);
