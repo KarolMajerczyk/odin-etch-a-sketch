@@ -2,15 +2,22 @@ const canvas = document.querySelector("#canvas");
 const settingsPanel = document.querySelector(".settings-panel");
 
 settingsPanel.addEventListener("input", (e) => {
-  if (e.target.id === "color-input") {
+  if (e.target.id === "color-input" || e.target.id === "random-color") {
     return;
   }
 
-  const rowsCountInput = document.querySelector("#rows-count").value;
-  const columnsCountInput = document.querySelector("#columns-count").value;
-  const pixelSizeInput = document.querySelector("#pixel-size").value;
+  const rowsCountInput = document.querySelector("#rows-count");
+  const columnsCountInput = document.querySelector("#columns-count");
+  const pixelSizeInput = document.querySelector("#pixel-size");
 
-  renderGridCanvas(rowsCountInput, columnsCountInput, pixelSizeInput);
+  rowsCountInput.max = Math.floor(canvas.clientHeight / pixelSizeInput.value);
+  columnsCountInput.max = Math.floor(canvas.clientWidth / pixelSizeInput.value);
+
+  renderGridCanvas(
+    rowsCountInput.value,
+    columnsCountInput.value,
+    pixelSizeInput.value
+  );
 });
 
 function renderGridCanvas(rowsCount = 16, columnsCount = 16, pixelSize = 20) {
@@ -42,8 +49,13 @@ function renderGridCanvas(rowsCount = 16, columnsCount = 16, pixelSize = 20) {
       const gridSquare = event.target;
 
       const colorInput = document.querySelector("#color-input");
-      gridSquare.style.background = colorInput.value;
-      // gridSquare.style.background = getRandomRGBColor();
+      const randomColor = document.querySelector("#random-color");
+
+      if (randomColor.checked) {
+        gridSquare.style.background = getRandomRGBColor();
+      } else {
+        gridSquare.style.background = colorInput.value;
+      }
     }
   });
 
